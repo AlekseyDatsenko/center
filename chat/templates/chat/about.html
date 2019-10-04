@@ -1,0 +1,6 @@
+{% extends 'chat/index.html' %}
+{% block content %}
+{% for a in about %}
+    <h5 id="about">{{ a.text }}</h5>    
+{% endfor %}
+{% endblock %}

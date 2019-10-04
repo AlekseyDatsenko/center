@@ -1,0 +1,36 @@
+{% extends 'chat/index.html' %}
+{% block content %}
+{% for n in news %}
+    <p>{{ n.created_date|date:"SHORT_DATE_FORMAT" }} &emsp; <a href="{% url 'news_detail' pk=n.pk %}"><strong>{{ n.title }}</a></strong></p>
+{% endfor %}
+           </div>
+         </div>
+       </div>
+       <p></p>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+<nav aria-label="...">
+<ul class="pagination justify-content-end">
+  <ul class="pagination pagination-sm">
+    <li class="page-item">
+        {% if news.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1">&laquo;</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ news.previous_page_number }}">предыдущая</a></li>
+        {% endif %}
+            <li class="page-item"><a class="page-link" href="">{{ news.number }} из {{ news.paginator.num_pages }}</a></li>
+
+        {% if news.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ news.next_page_number }}">следующая</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ news.paginator.num_pages }}">&raquo;</a></li>
+        {% endif %}
+    </li>
+  </ul>
+</ul>
+</nav>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+

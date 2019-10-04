@@ -1,0 +1,11 @@
+{% extends 'chat/index.html' %}
+{% block content %}
+<div align="center">
+{% for contact in contacts %}
+    <h3><strong>тел.</strong> {{ contact.phone }}</h3>
+    <h3><strong>E-mail:</strong> {{ contact.mail }}</h3>
+    <h3><strong>Адрес:</strong> {{ contact.adress }}</h3>
+    <p></p>
+{% endfor %}
+</div>
+{% endblock %}

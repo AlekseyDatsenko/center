@@ -1,0 +1,23 @@
+body {
+	font-family: 'Cormorant Infant', serif;
+	}	  
+.jumbotron { 
+    padding: 1.5%;
+	}
+A:hover { 
+	color: Black;
+	}
+A { 
+	color: Black;
+	}  
+.pagination > li > a {
+	color: Black;
+	margin-bottom: 25px;
+	}
+#contacts {
+	align: centr;
+    }
+#about {
+   text-indent: 1.5em;
+   text-align: justify;
+   }

@@ -1,0 +1,38 @@
+{% extends 'chat/index.html' %}
+{% block content %}
+
+{% for post in posts %}
+    <p>{{ post.published_date|date:"d/m/Y" }} / {{ post.author }}<br><a href="{% url 'post_detail' pk=post.pk %}"><strong>{{ post.title }}</a></strong></p>
+{% endfor %}
+{% if user.is_authenticated %}
+<p align="right"><a class="btn btn-primary btn-lg" href="{% url 'new_post' %}" role="button">Создать тему</a></p>
+{% endif %}
+           </div>
+         </div>
+       </div>
+       <p></p>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+<nav aria-label="...">
+<ul class="pagination justify-content-end">
+  <ul class="pagination pagination-sm">
+    <li class="page-item">
+        {% if posts.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1">&laquo;</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">предыдущая</a></li>
+        {% endif %}
+            <li class="page-item"><a class="page-link" href="">{{ posts.number }} из {{ posts.paginator.num_pages }}</a></li>
+
+        {% if posts.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">следующая</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ posts.paginator.num_pages }}">&raquo;</a></li>
+        {% endif %}
+    </li>
+  </ul>
+</ul>
+</nav>
+      </div>
+    </div>
+  </div>
+{% endblock %}

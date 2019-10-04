@@ -1,0 +1,47 @@
+{% extends 'chat/index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1>{{ post.title }}</h1>
+<p>{{ post.text|linebreaksbr }}</p>
+     {% for comment in com %}
+        <strong>{{ comment.created|date:"SHORT_DATE_FORMAT" }} / {{ comment.user }}</strong><br>
+        <p align="justify">{{ comment.text }}</p>
+     {% endfor %}
+{% if user.is_authenticated %}
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary">Отправить</button>
+        </form>
+{% else %}
+<h5><strong>Если Вы хотите создавать темы, или оставлять комментарии пожалуйста зарегистрируйтесь.</strong></h5> 
+{% endif %}
+           </div>
+         </div>
+       </div>
+       <p></p>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+<nav aria-label="...">
+<ul class="pagination justify-content-end">
+  <ul class="pagination pagination-sm">
+    <li class="page-item">
+        {% if com.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1">&laquo;</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ com.previous_page_number }}">предыдущая</a></li>
+        {% endif %}
+            <li class="page-item"><a class="page-link" href="">{{ com.number }} из {{ com.paginator.num_pages }}</a></li>
+
+        {% if com.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ com.next_page_number }}">следующая</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ com.paginator.num_pages }}">&raquo;</a></li>
+        {% endif %}
+    </li>
+  </ul>
+</ul>
+</nav>
+      </div>
+    </div>
+  </div>
+{% endblock %}

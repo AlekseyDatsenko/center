@@ -1,0 +1,35 @@
+{% extends 'chat/index.html' %}
+{% block content %}
+{% for video in videos %}
+  <div>
+    <p align="center">{{ video.title }}</p>
+    <div align="center"><iframe width="560" height="315" src="{{ video.link }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+  </div>
+{% endfor %}
+<p></p>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+<nav aria-label="...">
+<ul class="pagination justify-content-end">
+  <ul class="pagination pagination-sm">
+    <li class="page-item">
+        {% if videos.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1">&laquo;</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ videos.previous_page_number }}">предыдущая</a></li>
+        {% endif %}
+            <li class="page-item"><a class="page-link" href="">{{ videos.number }} из {{ videos.paginator.num_pages }}</a></li>
+
+        {% if videos.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ videos.next_page_number }}">следующая</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ videos.paginator.num_pages }}">&raquo;</a></li>
+        {% endif %}
+    </li>
+  </ul>
+</ul>
+</nav> 
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
